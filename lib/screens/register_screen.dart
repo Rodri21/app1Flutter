@@ -26,8 +26,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     actions.add(
       ListTile(
-        leading: Icon(Icons.photo_camera),
-        title: Text('Tomar foto'),
+        leading: const Icon(Icons.photo_camera),
+        title: const Text('Tomar foto'),
         onTap: () async {
           final XFile? image = await _picker.pickImage(
             source: ImageSource.camera,
@@ -45,8 +45,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     actions.add(
       ListTile(
-        leading: Icon(Icons.photo_library),
-        title: Text('Seleccionar de galería'),
+        leading: const Icon(Icons.photo_library),
+        title: const Text('Seleccionar de galería'),
         onTap: () async {
           final XFile? image = await _picker.pickImage(
             source: ImageSource.gallery,
@@ -72,25 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
     );
   }
-
-  void _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 50,
-    );
-
-    if (image != null) {
-      setState(() {
-        _image = File(image.path);
-      });
-    }
-  }
-
-  final imgLogo = Image.asset(
-    'assets/logo.png',
-    height: 200,
-  );
 
   final spaceHorizontal = const SizedBox(
     height: 10,
@@ -193,15 +174,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: ElevatedButton(
             onPressed: () {
-              if (validData()) {
-                isLoading = true;
-                setState(() {});
-                Future.delayed(const Duration(milliseconds: 4000))
-                    .then((value) {
-                  isLoading = false;
-                  setState(() {});
-                  Navigator.pushNamed(context, '/dash');
-                });
+              if(validData()){
+                Navigator.pushNamed(context, '/login');
               }
             },
             child: const Text(

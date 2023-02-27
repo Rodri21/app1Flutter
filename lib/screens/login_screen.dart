@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:programa1/routes.dart';
+import 'package:programa1/screens/responsive.dart';
 import 'package:programa1/widgets/loading_modal_widget.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
@@ -74,44 +75,87 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    opacity: .4,
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/fondo_itcelaya.jpg'))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        spaceHorizontal,
-                        imgLogo,
-                        spaceHorizontal,
-                        txtEmail,
-                        spaceHorizontal,
-                        txtPass,
-                        spaceHorizontal,
-                        btnEmail,
-                        spaceHorizontal,
-                        btnFacebook,
-                        spaceHorizontal,
-                        btnGoogle,
-                        spaceHorizontal,
-                        btnGithub,
-                        spaceHorizontal,
-                        txtRegister
-                      ]),
-                ],
-              ),
-            ),
-          ),
+          Responsive(mobile: MobileLoginScreen(btnEmail, txtRegister), desktop: WebLoginScreen(context, btnEmail, txtRegister)),
           isLoading ? const LoadingModalWidget() : Container()
         ],
       ),
     );
+  }
+
+  Container WebLoginScreen(BuildContext context, SocialLoginButton btnEmail, Padding txtRegister) {
+    return Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(opacity: .4, fit: BoxFit.cover,image: AssetImage('assets/fondo_itcelaya.jpg'))),
+            child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10), child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [Padding(
+                    padding: const EdgeInsets.only(right: 80),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Expanded(child: SizedBox(width: MediaQuery.of(context).size.width * 0.3, child: imgLogo,))],),
+                  ), 
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: txtEmail,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: txtPass,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: btnEmail,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: btnFacebook,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: btnGoogle,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: btnGithub,),
+                        spaceHorizontal,
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.4, child: txtRegister,)
+                      ]
+                    )],
+                ),],
+            ),
+          ),
+        );
+  }
+
+  Container MobileLoginScreen(SocialLoginButton btnEmail, Padding txtRegister) {
+    return Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  opacity: .4,
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/fondo_itcelaya.jpg'))),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      spaceHorizontal,
+                      imgLogo,
+                      spaceHorizontal,
+                      txtEmail,
+                      spaceHorizontal,
+                      txtPass,
+                      spaceHorizontal,
+                      btnEmail,
+                      spaceHorizontal,
+                      btnFacebook,
+                      spaceHorizontal,
+                      btnGoogle,
+                      spaceHorizontal,
+                      btnGithub,
+                      spaceHorizontal,
+                      txtRegister
+                    ]),
+              ],
+            ),
+          ),
+        );
   }
 }
