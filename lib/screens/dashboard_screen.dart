@@ -1,6 +1,7 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:programa1/provider/theme_provider.dart';
+import 'package:programa1/screens/list_post.dart';
 import 'package:programa1/settings/styles_settings.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Social TEC :)'),
+      ),
+      body: ListPost(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, '/add').then((value) => {
+            setState((){})
+          });
+        }, 
+        label: const Text('Add post!'),
+        icon: const Icon(Icons.add_comment),
       ),
       drawer: Drawer(
         child: ListView(
@@ -44,8 +55,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               isDarkModeEnabled: isDarkModeEnabled,
               onStateChanged: (isDarkModeEnabled) {
                 isDarkModeEnabled
-                    ? theme.setthemeData(StylesSettings.darkTheme(context))
-                    : theme.setthemeData(StylesSettings.lightTheme(context));
+                    ? theme.setthemeData(StylesSettings.spaceTheme(context))
+                    : theme.setthemeData(StylesSettings.darkTheme(context));
                 this.isDarkModeEnabled = isDarkModeEnabled;
                 setState(() {});
               },

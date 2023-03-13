@@ -165,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       style: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.primary),
+      ),
     );
     final btnSignUp = SizedBox(
       width: 200,
@@ -175,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: ElevatedButton(
             onPressed: () {
               if(validData()){
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushNamed(context, '/dash');
               }
             },
             child: const Text(
@@ -191,12 +191,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           onPressed: () {
             Navigator.pushNamed(context, '/login');
           },
-          child: const Text(
+          child: Text(
             'Log in',
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline),
+                decoration: TextDecoration.underline,
+                color: Theme.of(context).colorScheme.onSecondary),
           )),
     );
 
@@ -204,8 +205,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       resizeToAvoidBottomInset: false,
       body: Stack(children: [
         Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
+                  colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.secondary, BlendMode.modulate),
                   opacity: .4,
                   fit: BoxFit.cover,
                   image: AssetImage('assets/fondo_itcelaya.jpg'))),

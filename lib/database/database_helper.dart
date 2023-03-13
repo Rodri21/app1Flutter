@@ -13,13 +13,13 @@ class DatabaseHelper {
   static Database? _database;
   Future<Database> get database async {
     if (_database != null) return _database!;
-    return _database = _initDatabase();
+    return _database = await _initDatabase();
   }
 
   _initDatabase() async {
     Directory folder = await getApplicationDocumentsDirectory();
     String pathDB = join(folder.path, nameDB);
-    await openDatabase(
+    return await openDatabase(
       pathDB,
       version: versionDB,
       onCreate: _createTables,
@@ -28,8 +28,9 @@ class DatabaseHelper {
 
   _createTables(Database db, int version) async {
     String query = '''CREATE TABLE tblPost( 
-          idPost INTEGER PRIMARY KEY, 
-        dscPost VARCHAR(200), datePost DATE)''';
+        idPost INTEGER PRIMARY KEY, 
+        dscPost VARCHAR(200), 
+        datePost DATE)''';
     db.execute(query);
   }
 
