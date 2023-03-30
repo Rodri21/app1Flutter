@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:programa1/database/database_helper.dart';
-import 'package:programa1/models/post_model.dart';
+import 'package:programa1/models/event_model.dart';
 import 'package:programa1/provider/flags_provider.dart';
-import 'package:programa1/widgets/item_post_widget.dart';
+import 'package:programa1/widgets/item_event_widget.dart';
 import 'package:provider/provider.dart';
 
-class ListPost extends StatefulWidget {
-  const ListPost({super.key});
+import '../models/post_model.dart';
+
+class ListEvent extends StatefulWidget {
+  const ListEvent({super.key});
 
   @override
-  State<ListPost> createState() => _ListPostState();
+  State<ListEvent> createState() => _ListEventState();
 }
 
-class _ListPostState extends State<ListPost> {
+class _ListEventState extends State<ListEvent> {
 
   DatabaseHelper? database;
 
@@ -21,21 +23,21 @@ class _ListPostState extends State<ListPost> {
     super.initState();
     database = DatabaseHelper();
   }
-
+  
   @override
   Widget build(BuildContext context) {
 
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
 
     return FutureBuilder(
-      future: flag.getflagListPost() == true ? database!.GETALLPOST() : database!.GETALLPOST(),
-      builder: (context, AsyncSnapshot<List<PostModel>> snapshot){
+      future: flag.getflagListEvent() == true ? database!.GETALLEVENTS() : database!.GETALLEVENTS(),
+      builder: (context, AsyncSnapshot<List<EventModel>> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index){
-              var objPostModel = snapshot.data![index];
-              return ItemPostWidget(objPostModel:objPostModel);
+              var objEventModel = snapshot.data![index];
+              return ItemEventWidget(objEventModel:objEventModel);
             },
           );
         }else if(snapshot.hasError){
@@ -43,7 +45,7 @@ class _ListPostState extends State<ListPost> {
         }else{
           return const Center(child: CircularProgressIndicator(),);
         }
-     },
+      },
     );
   }
 }

@@ -1,36 +1,28 @@
-import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:programa1/provider/theme_provider.dart';
-import 'package:programa1/screens/list_post.dart';
-import 'package:programa1/settings/styles_settings.dart';
-import 'package:provider/provider.dart';
+import 'package:programa1/screens/list_event.dart';
 
-class DashboardScreen extends StatefulWidget {
-  DashboardScreen({super.key});
+class Events extends StatefulWidget {
+  const Events({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<Events> createState() => _EventsState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
-  bool isDarkModeEnabled = false;
-
+class _EventsState extends State<Events> {
   @override
   Widget build(BuildContext context) {
-    ThemeProvider theme = Provider.of<ThemeProvider>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Social TEC :)'),
       ),
-      body: ListPost(),
+      body: ListEvent(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, '/addPost').then((value) => {
+          Navigator.pushNamed(context, '/addEvent').then((value) => {
             setState((){})
           });
         }, 
-        label: const Text('Add post!'),
+        label: const Text('Add event!'),
         icon: const Icon(Icons.add_comment),
       ),
       drawer: Drawer(
@@ -49,10 +41,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               subtitle: const Text('Descripcion de la practica'),
               leading: const Icon(Icons.settings),
               trailing: const Icon(Icons.chevron_right),
-            ),
-            ElevatedButton(onPressed: (){
-              Navigator.pushNamed(context, '/events');
-            }, child: Text('Eventos'))
+            )
           ],
         ),
       ),

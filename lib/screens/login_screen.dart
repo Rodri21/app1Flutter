@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:programa1/firebase/firebase_auth.dart';
 import 'package:programa1/routes.dart';
 import 'package:programa1/screens/responsive.dart';
 import 'package:programa1/widgets/loading_modal_widget.dart';
@@ -9,6 +10,9 @@ import 'package:social_login_buttons/social_login_buttons.dart';
 import '../provider/theme_provider.dart';
 import '../settings/styles_settings.dart';
 
+final TextEditingController _txtemailController = TextEditingController();
+final TextEditingController _txtpassController = TextEditingController();
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -18,12 +22,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
+  EmailAuth emailAuth = EmailAuth();
+  
+
 
   final txtEmail = TextFormField(
+    controller: _txtemailController,
     decoration: const InputDecoration(
         label: Text('Email User'), border: OutlineInputBorder()),
   );
   final txtPass = TextFormField(
+    controller: _txtpassController,
     obscureText: true,
     decoration: const InputDecoration(
         label: Text('Password User'), border: OutlineInputBorder()),
@@ -85,9 +94,16 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = true;
         setState(() {});
         Future.delayed(const Duration(milliseconds: 2000)).then((value) {
+          emailAuth.signInWithEmailAndPassword(email: _txtemailController.text, password: _txtpassController.text).then((value) {
+            if (value) {
+              Navigator.pushNamed(context, '/dash');
+            } else{
+              Navigator.pushNamed(context, '/dash');
+              //Snackbar con error de inicio de sesion
+            }
+          });
           isLoading = false;
           setState(() {});
-          Navigator.pushNamed(context, '/dash');
         });
       },
     );

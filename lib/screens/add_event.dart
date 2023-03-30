@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:programa1/database/database_helper.dart';
 
-class AddPostScreen extends StatelessWidget {
-  AddPostScreen({super.key});
+class AddEventScreen extends StatelessWidget {
+  AddEventScreen({super.key});
 
   DatabaseHelper database = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
 
-    final txtConPost = TextEditingController();
+    final txtConEvent = TextEditingController();
 
     return Scaffold(
     body: Center(
@@ -24,16 +24,17 @@ class AddPostScreen extends StatelessWidget {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Add Post :)'),
+            Text('Add Event :)'),
             TextFormField(
-              controller: txtConPost, 
+              controller: txtConEvent, 
               maxLines: 8,
             ),
             ElevatedButton(
               onPressed: (){
-                database.INSERT('tblPost',{
-                  'dscPost' : txtConPost.text,
-                  'datePost' : DateTime.now().toString()
+                database.INSERT('tblEvent',{
+                  'dscEvento' : txtConEvent.text,
+                  'fechaEvento' : DateTime.now().toString(),
+                  'completado' : 0,
                 }).then((value){
 
                   var msg = value > 0 
@@ -50,7 +51,7 @@ class AddPostScreen extends StatelessWidget {
                 });
 
               }, 
-              child: Text('Save Post')
+              child: Text('Save Event')
             )
           ],
         ),

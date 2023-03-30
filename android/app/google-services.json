@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "678129316600",
+    "project_id": "pmsnersm",
+    "storage_bucket": "pmsnersm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678129316600:android:35826b3460e9adcc40810d",
+        "android_client_info": {
+          "package_name": "com.example.programa1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678129316600-abmaegda4cedsud0e3nvimvi7spslin1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbwjLACsaX8Y2B8OpyM-64gZhGeH4Gcb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678129316600-abmaegda4cedsud0e3nvimvi7spslin1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

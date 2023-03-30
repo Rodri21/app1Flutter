@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:programa1/firebase/firebase_auth.dart';
 import '../widgets/loading_modal_widget.dart';
 import 'package:image_picker/image_picker.dart';
+
 
 final TextEditingController _nombreController = TextEditingController();
 final TextEditingController _txtemailController = TextEditingController();
@@ -17,6 +19,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  EmailAuth emailAuth = EmailAuth();
   bool isLoading = false;
   File? _image;
 
@@ -175,6 +178,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: ElevatedButton(
             onPressed: () {
               if(validData()){
+                emailAuth!.createUserWithEmailAndPassword(
+                  email: _txtemailController.text,
+                  password: _txtpassController.text
+                );
                 Navigator.pushNamed(context, '/dash');
               }
             },

@@ -40,10 +40,12 @@ dependencies:
   day_night_switcher: ^0.2.0+1
   sqflite: ^2.2.4+1
   image_picker: ^0.8.4+2
-  path_provider: ^2.0.13
+  path_provider: ^2.0.0
   concentric_transition: ^1.0.3
   lottie: ^2.2.0
   shared_preferences: ^2.0.18 
+  firebase_auth: ^4.3.0
+  firebase_core: ^2.8.0
 
 dev_dependencies:
   flutter_test:

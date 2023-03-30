@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:programa1/database/database_helper.dart';
-import 'package:programa1/models/post_model.dart';
+import 'package:programa1/models/event_model.dart';
 import 'package:programa1/provider/flags_provider.dart';
 import 'package:provider/provider.dart';
 
-class ItemPostWidget extends StatelessWidget {
-  ItemPostWidget({super.key, this.objPostModel});
+class ItemEventWidget extends StatelessWidget {
+  ItemEventWidget({super.key, this.objEventModel});
 
-  PostModel? objPostModel;
+  EventModel? objEventModel;
 
   DatabaseHelper database = DatabaseHelper();
 
@@ -19,17 +19,16 @@ class ItemPostWidget extends StatelessWidget {
     );
 
     final txtUser = Text('Rodrigo');
-    final datePost = Text(objPostModel!.datePost!.toString());
-    final imgPost = Image(image: AssetImage('assets/logo.png'), height: 100,);
-    final txtDesc = Text(objPostModel!.dscPost!.toString());
+    final dateEvent = Text(objEventModel!.fechaEvento!.toString());
+    final imgEvent = Image(image: AssetImage('assets/logo.png'), height: 100,);
+    final txtDesc = Text(objEventModel!.dscEvento!.toString());
     final iconRate = Icon(Icons.rate_review);
 
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
-
     return Container(
       margin: const EdgeInsets.all(10),
       height: 250,
-      width: double.infinity,
+      width: double.infinity, 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.green,
@@ -38,10 +37,10 @@ class ItemPostWidget extends StatelessWidget {
           Row(children: [
             avatar,
             txtUser,
-            datePost
+            dateEvent
           ],),
           Row(children: [
-            imgPost,
+            imgEvent,
             txtDesc
           ],),
           Row(
@@ -58,12 +57,12 @@ class ItemPostWidget extends StatelessWidget {
                     context: context, 
                     builder: (context) => AlertDialog(
                       title: const Text('Confirmar Borrado'),
-                      content: const Text('Deseas borrar el post?'),
+                      content: const Text('Deseas borrar el evento?'),
                       actions: [
                         TextButton(
                           onPressed: (){
-                            database.DELETEPOST('tblPost',objPostModel!.idPost!).then(
-                              (value) => flag.setflagListPost()
+                            database.DELETEEVENT('tblEvent',objEventModel!.idEvento!).then(
+                              (value) => flag.setflagListEvent()
                             );
                             Navigator.pop(context);
                           }, 
