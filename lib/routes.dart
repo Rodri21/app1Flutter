@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:programa1/screens/add_event.dart';
 import 'package:programa1/screens/add_post_screen.dart';
 import 'package:programa1/screens/dashboard_screen.dart';
 import 'package:programa1/screens/eventos_screen.dart';
@@ -15,7 +14,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '/login': (BuildContext context) => const LoginScreen(),
     '/theme':(BuildContext context) => const themeScreen(),
     '/addPost':(BuildContext context) => AddPostScreen(),
-    '/addEvent':(BuildContext context) => AddEventScreen(),
     '/events':(BuildContext context) => const Events(),
   };
 }

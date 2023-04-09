@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:programa1/widgets/menu_widget.dart';
 import 'package:programa1/screens/responsive.dart';
 import 'package:programa1/widgets/loading_modal_widget.dart';
 import 'package:provider/provider.dart';
@@ -88,6 +88,9 @@ class _themeScreenState extends State<themeScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text('Social TEC :)'),
+      ),
       body: Stack(children: [
         Container(
           decoration: BoxDecoration(
@@ -95,7 +98,7 @@ class _themeScreenState extends State<themeScreen> {
                 colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.secondary, BlendMode.modulate),
                 opacity: .4,
                 fit: BoxFit.cover,
-                image: AssetImage('assets/fondo_itcelaya.jpg'))),
+                image: const AssetImage('assets/fondo_itcelaya.jpg'))),
           child: Responsive(
             mobile:  MobileThemeScreen(themeDarkButton, themeLightButton, themeCustomButton, lblSeleccionaTema), 
             desktop: WebThemeScreen(themeDarkButton, themeLightButton, themeCustomButton, lblSeleccionaTema)
@@ -103,6 +106,7 @@ class _themeScreenState extends State<themeScreen> {
         ),
         isLoading ? const LoadingModalWidget() : Container()
       ]),
+      drawer: const MenuWidget(),
     );
   }
 

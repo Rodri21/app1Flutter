@@ -4,7 +4,7 @@ import 'package:programa1/database/database_helper.dart';
 class AddPostScreen extends StatelessWidget {
   AddPostScreen({super.key});
 
-  DatabaseHelper database = DatabaseHelper();
+  final DatabaseHelper database = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class AddPostScreen extends StatelessWidget {
     return Scaffold(
     body: Center(
       child: Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(15),
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(15),
         height: 350,
         decoration: BoxDecoration(
           color: Colors.green,
@@ -24,7 +24,7 @@ class AddPostScreen extends StatelessWidget {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Add Post :)'),
+            const Text('Add Post :)'),
             TextFormField(
               controller: txtConPost, 
               maxLines: 8,
@@ -50,7 +50,7 @@ class AddPostScreen extends StatelessWidget {
                 });
 
               }, 
-              child: Text('Save Post')
+              child: const Text('Save Post')
             )
           ],
         ),

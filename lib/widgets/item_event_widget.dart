@@ -7,22 +7,22 @@ import 'package:provider/provider.dart';
 class ItemEventWidget extends StatelessWidget {
   ItemEventWidget({super.key, this.objEventModel});
 
-  EventModel? objEventModel;
+  final EventModel? objEventModel;
 
-  DatabaseHelper database = DatabaseHelper();
+  final DatabaseHelper database = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
 
-    final avatar = CircleAvatar(
+    const avatar = CircleAvatar(
       backgroundImage: AssetImage('assets/logo.png'),
     );
 
-    final txtUser = Text('Rodrigo');
+    const txtUser = Text('Rodrigo');
     final dateEvent = Text(objEventModel!.fechaEvento!.toString());
-    final imgEvent = Image(image: AssetImage('assets/logo.png'), height: 100,);
-    final txtDesc = Text(objEventModel!.dscEvento!.toString());
-    final iconRate = Icon(Icons.rate_review);
+    const imgEvent = Image(image: AssetImage('assets/logo.png'), height: 100,);
+    final txtDesc = Text(objEventModel!.dscEvento.toString());
+    const iconRate = Icon(Icons.rate_review);
 
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
     return Container(
@@ -49,7 +49,7 @@ class ItemEventWidget extends StatelessWidget {
               Expanded(child: Container()),
               IconButton(
                 onPressed: (){}, 
-                icon: Icon(Icons.edit)
+                icon: const Icon(Icons.edit)
               ),
               IconButton(
                 onPressed: (){
@@ -78,7 +78,7 @@ class ItemEventWidget extends StatelessWidget {
                     ),
                   );
                 }, 
-                icon: Icon(Icons.delete)
+                icon: const Icon(Icons.delete)
               ),
             ],
           )

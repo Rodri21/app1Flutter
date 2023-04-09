@@ -1,56 +1,16 @@
-
-
-import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int contador = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Hola mundo!!'),
-      ),
-      body: Center(
-          child: ListView(
-        shrinkWrap: true,
-        children: [
-          Text(
-            '$contador',
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 25),
-          ),
-          const Text(
-            'Contador de clicks',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25),
-          ),
-        ],
-      )),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.ads_click),
-        onPressed: () {
-          contador++;
-          print('valor del contador $contador');
-          setState(() {});
-        },
-      ),
-    ));
-  }
-}
-
-
-
-
-
-
+    if(_eventController.text.isEmpty){
+      Navigator.pop(context);
+      return;
+    } else{
+      if (selectedEvents[selectedDay]!=null) {
+        selectedEvents[selectedDay]!.add(EventModel(dscEvento:_eventController.text, fechaEvento: stringDate(selectedDay), completado: 0));
+      } else{
+        selectedEvents[selectedDay] = [
+          EventModel(dscEvento: _eventController.text)
+        ];
+      }
+      Navigator.pop(context);
+      _eventController.clear();
+      setState(() {});
+      return;
+    }

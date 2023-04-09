@@ -7,22 +7,22 @@ import 'package:provider/provider.dart';
 class ItemPostWidget extends StatelessWidget {
   ItemPostWidget({super.key, this.objPostModel});
 
-  PostModel? objPostModel;
+  final PostModel? objPostModel;
 
-  DatabaseHelper database = DatabaseHelper();
+  final DatabaseHelper database = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
 
-    final avatar = CircleAvatar(
+    const avatar = CircleAvatar(
       backgroundImage: AssetImage('assets/logo.png'),
     );
 
-    final txtUser = Text('Rodrigo');
+    const txtUser = Text('Rodrigo');
     final datePost = Text(objPostModel!.datePost!.toString());
-    final imgPost = Image(image: AssetImage('assets/logo.png'), height: 100,);
+    const imgPost = Image(image: AssetImage('assets/logo.png'), height: 100,);
     final txtDesc = Text(objPostModel!.dscPost!.toString());
-    final iconRate = Icon(Icons.rate_review);
+    const iconRate = Icon(Icons.rate_review);
 
     FlagsProvider flag = Provider.of<FlagsProvider>(context);
 
@@ -62,7 +62,7 @@ class ItemPostWidget extends StatelessWidget {
                       actions: [
                         TextButton(
                           onPressed: (){
-                            database.DELETEPOST('tblPost',objPostModel!.idPost!).then(
+                            database.DELETE('tblPost', 'idPost',objPostModel!.idPost!).then(
                               (value) => flag.setflagListPost()
                             );
                             Navigator.pop(context);
@@ -79,7 +79,7 @@ class ItemPostWidget extends StatelessWidget {
                     ),
                   );
                 }, 
-                icon: Icon(Icons.delete)
+                icon: const Icon(Icons.delete)
               ),
             ],
           )

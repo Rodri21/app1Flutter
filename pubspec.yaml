@@ -45,7 +45,8 @@ dependencies:
   lottie: ^2.2.0
   shared_preferences: ^2.0.18 
   firebase_auth: ^4.3.0
-  firebase_core: ^2.8.0
+  firebase_core: ^2.8.0 
+  table_calendar: ^3.0.8
 
 dev_dependencies:
   flutter_test:

@@ -44,7 +44,9 @@ class DatabaseHelper {
 
   Future<int> INSERT(String tblName, Map<String, dynamic> data) async {
     var conexion = await database;
-    return conexion.insert(tblName, data);
+    var result =  conexion.insert(tblName, data);
+    print('INSERT result: $result');
+    return result;
   }
 
   Future<int> UPDATEPOST(String tblName, Map<String, dynamic> data) async {
@@ -53,14 +55,20 @@ class DatabaseHelper {
         where: 'idPost = ?', whereArgs: [data['idPost']]);
   }
 
-  Future<int> DELETEPOST(String tblName, int idPost) async {
+  Future<int> UPDATEEVENT(String tblName, Map<String, dynamic> data) async {
     var conexion = await database;
-    return conexion.delete(tblName, where: 'idPost = ?', whereArgs: [idPost]);
+    return conexion.update(tblName, data,
+        where: 'idEvento = ?', whereArgs: [data['idEvento']]);
   }
 
-    Future<int> DELETEEVENT(String tblName, int idPost) async {
+  Future<int> DELETE(String tblName, String campo, int idPost) async {
     var conexion = await database;
-    return conexion.delete(tblName, where: 'idEvento = ?', whereArgs: [idPost]);
+    return conexion.delete(tblName, where: '$campo = ?', whereArgs: [idPost]);
+  }
+
+  Future<int> DELETEEVENT(String tblName, int idEvent) async {
+    var conexion = await database;
+    return conexion.delete(tblName, where: 'idEvento = ?', whereArgs: [idEvent]);
   }
 
   Future<List<PostModel>> GETALLPOST() async {
@@ -74,4 +82,14 @@ class DatabaseHelper {
     var result = await conexion.query('tblEvent');
     return result.map((event) => EventModel.fromMap(event)).toList();
   }
+
+  Future<List<EventModel>> GETALLEVENTSBYDAY(DateTime day) async{
+    var conexion = await database;
+    var result = await conexion.rawQuery(
+      'SELECT * FROM tblEvent WHERE date(fechaEvento) = date(?)',
+      [day.toIso8601String()]
+    );
+    return result.map((event) => EventModel.fromMap(event)).toList();
+  }
+
 }

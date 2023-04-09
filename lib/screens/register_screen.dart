@@ -69,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title: Text('Seleccionar imagen'),
+          title: const Text('Seleccionar imagen'),
           children: actions,
         );
       },
@@ -163,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
 
-    final lblRegister = Text(
+    const lblRegister = Text(
       'Registro',
       style: TextStyle(
           fontSize: 26,
@@ -178,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: ElevatedButton(
             onPressed: () {
               if(validData()){
-                emailAuth!.createUserWithEmailAndPassword(
+                emailAuth.createUserWithEmailAndPassword(
                   email: _txtemailController.text,
                   password: _txtpassController.text
                 );
@@ -217,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.secondary, BlendMode.modulate),
                   opacity: .4,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/fondo_itcelaya.jpg'))),
+                  image: const AssetImage('assets/fondo_itcelaya.jpg'))),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Stack(alignment: Alignment.topCenter, children: [
